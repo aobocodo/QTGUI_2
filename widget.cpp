@@ -1,0 +1,126 @@
+#include "widget.h"
+#include "ui_widget.h"
+#include "iconhelper.h"
+#include <QDesktopWidget>
+#include <QPushButton>
+#include <QDialog>
+#include <QDebug>
+
+Widget::Widget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Widget)
+{
+    ui->setupUi(this);
+    this->initForm();
+
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
+
+bool Widget::eventFilter(QObject *watched, QEvent *event){
+    if (event->type() == QEvent::MouseButtonDblClick) {
+        if (watched == ui->widgetTitle) {
+            on_btn_max_clicked();//双击标题放大
+            return true;
+        }
+    }
+
+    return QWidget::eventFilter(watched, event);
+}
+
+void Widget::initForm(){
+    this->setProperty("form",true);
+    this->setProperty("canMove", true);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint);
+
+    menu_one = new QMenu();
+    menu_one->addAction("自配置");
+    menu_one->addAction("自优化");
+    menu_one->addAction("自治愈");
+    connect(menu_one, SIGNAL(triggered(QAction*)),this,SLOT(menu_one_trigged(QAction*)));
+
+    menu_two = new QMenu();
+    menu_two->addAction("基站一");
+    menu_two->addAction("基站二");
+    menu_two->addAction("基站三");
+    connect(menu_two,SIGNAL(triggered(QAction*)),this,SLOT(menu_two_trigged(QAction*)));
+
+    IconHelper::Instance()->setIcon(ui->labIco, QChar(0xf099), 30);
+    IconHelper::Instance()->setIcon(ui->btn_min, QChar(0xf068));
+    IconHelper::Instance()->setIcon(ui->btn_max, QChar(0xf067));
+    IconHelper::Instance()->setIcon(ui->btn_close, QChar(0xf00d));
+    ui->widgetTitle->installEventFilter(this);
+    ui->widgetTitle->setProperty("form","title");
+    ui->widgetTop->setProperty("nav","top");
+    ui->labTitle->setFont(QFont("Microsoft Yahei", 20));
+
+    QSize icoSize(32,32);
+
+
+    int icoWidth=85;
+    QList<QToolButton *> btns = ui->widgetTop->findChildren<QToolButton *>();
+    foreach (QToolButton *btn, btns){
+        btn->setIconSize(icoSize);
+        btn->setMinimumWidth(icoWidth);
+        btn->setCheckable(true);
+        btn->setPopupMode(QToolButton::InstantPopup);
+    }
+    ui->btnBs->setIconSize(QSize(42, 42));
+    ui->btnMg->setMenu(menu_one);
+    ui->btnBs->setMenu(menu_two);
+}
+
+void Widget::menu_one_trigged(QAction *action)
+{
+    qDebug()<<"hello "<<action->text();
+    QString name = action->text();
+    if(name=="自配置"){
+        mg_dialog = new dialog_mg(this);
+        mg_dialog->setWindowTitle("自配置");
+        mg_dialog->setProperty("mg","white");
+        mg_dialog->show();
+    }
+
+
+}
+
+void Widget::menu_two_trigged(QAction *action)
+{
+    action->text();
+    qDebug()<<"hello "<<action->text();
+}
+
+
+
+
+
+
+void Widget::on_btn_max_clicked()
+{
+    static bool max = false;
+    static QRect location = this->geometry();
+
+    if (max) {
+        this->setGeometry(location);
+    } else {
+        QDesktopWidget *desk=QApplication::desktop();
+        int wd=desk->width();
+        int ht=desk->height();
+        this->resize(wd,ht);
+    }
+    this->setProperty("canMove", true);
+    max = !max;
+}
+
+void Widget::on_btn_min_clicked()
+{
+    showMinimized();
+}
+
+void Widget::on_btn_close_clicked()
+{
+    this->close();
+}
