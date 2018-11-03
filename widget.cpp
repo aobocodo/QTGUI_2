@@ -3,8 +3,11 @@
 #include "iconhelper.h"
 #include <QDesktopWidget>
 #include <QPushButton>
-#include <QDialog>
 #include <QDebug>
+
+
+int cg_i=0;
+
 
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
@@ -40,7 +43,9 @@ void Widget::initForm(){
     menu_one->addAction("自配置");
     menu_one->addAction("自优化");
     menu_one->addAction("自治愈");
+
     connect(menu_one, SIGNAL(triggered(QAction*)),this,SLOT(menu_one_trigged(QAction*)));
+
 
     menu_two = new QMenu();
     menu_two->addAction("基站一");
@@ -77,14 +82,24 @@ void Widget::menu_one_trigged(QAction *action)
 {
     qDebug()<<"hello "<<action->text();
     QString name = action->text();
-    if(name=="自配置"){
-        mg_dialog = new dialog_mg(this);
-        mg_dialog->setWindowTitle("自配置");
-        mg_dialog->setProperty("mg","white");
-        mg_dialog->show();
+    if(name=="自配置"&&cg_i==0){
+            cg_i=1;
+            QDesktopWidget *desk=QApplication::desktop();
+            int wd=desk->width();
+            int ht=desk->height();
+            cg_frame = new config_mainwindow(this);
+            connect(cg_frame,SIGNAL(close_cg()),this,SLOT(cg_close()));
+            cg_frame->move(((wd-600)/2),(ht-400)/2);
+            cg_frame->setFixedSize(600,400);
+            cg_frame->show();
     }
 
 
+}
+
+void Widget::cg_close()
+{
+    cg_i=0;
 }
 
 void Widget::menu_two_trigged(QAction *action)

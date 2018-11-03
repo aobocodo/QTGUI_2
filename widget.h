@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QMenu>
-#include "dialog_mg.h"
+#include "config_mainwindow.h"
 
 namespace Ui {
 class Widget;
@@ -18,7 +18,7 @@ public:
     ~Widget();
     QMenu *menu_one;
     QMenu *menu_two;
-    dialog_mg *mg_dialog;
+    config_mainwindow *cg_frame;
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
@@ -28,10 +28,8 @@ private:
 
 private slots:
     void initForm();
-    //void buttonClick();
-
-private slots:
     void menu_one_trigged(QAction* action);
+    void cg_close();
     void menu_two_trigged(QAction* action);
     void on_btn_max_clicked();
     void on_btn_min_clicked();

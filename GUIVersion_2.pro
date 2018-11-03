@@ -28,17 +28,17 @@ SOURCES += \
         widget.cpp \
     iconhelper.cpp \
     appinit.cpp \
-    dialog_mg.cpp
+    config_mainwindow.cpp
 
 HEADERS += \
         widget.h \
     iconhelper.h \
     appinit.h \
-    dialog_mg.h
+    config_mainwindow.h
 
 FORMS += \
         widget.ui \
-    dialog_mg.ui
+    config_mainwindow.ui
 
 RESOURCES += \
     main.qrc \
