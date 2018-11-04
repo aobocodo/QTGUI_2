@@ -88,10 +88,14 @@ void Widget::menu_one_trigged(QAction *action)
             int wd=desk->width();
             int ht=desk->height();
             cg_frame = new config_mainwindow(this);
+            cg_frame->setProperty("config","white");
+            cg_frame->setWindowTitle("自配置");
             connect(cg_frame,SIGNAL(close_cg()),this,SLOT(cg_close()));
             cg_frame->move(((wd-600)/2),(ht-400)/2);
             cg_frame->setFixedSize(600,400);
             cg_frame->show();
+
+
     }
 
 
