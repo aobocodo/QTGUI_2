@@ -63,7 +63,7 @@
       <item>
        <widget class="QLabel" name="labTitle">
         <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;SON演示平台服务端&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-family:'arial,verdana,sans-serif'; font-size:23px; color:#DCDCDC;&quot;&gt;6G简智无线接入网演示平台&lt;/span&gt;</string>
         </property>
        </widget>
       </item>
