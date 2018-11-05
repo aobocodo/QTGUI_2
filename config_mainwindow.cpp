@@ -49,8 +49,9 @@ config_mainwindow::config_mainwindow(QWidget *parent) :
         combox_pw->addItem("40");
         ui->tableWidget->setCellWidget(i,6,(QWidget*)combox_pw);
     }
-
-
+    ui->tableWidget->setAlternatingRowColors(true);
+    //ui->tableWidget->horizontalHeader()->setObjectName("hHeader");
+    ui->tableWidget->verticalHeader()->setObjectName("vHeader");
 }
 
 config_mainwindow::~config_mainwindow()

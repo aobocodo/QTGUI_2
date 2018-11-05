@@ -355,17 +355,17 @@ max-height:12px;
 }
 
 QScrollBar::handle:horizontal{
-background:#484848;
+background:#2A5CAA;
 min-width:50px;
 border-radius:6px;
 }
 
 QScrollBar::handle:horizontal:hover{
-background:#242424;
+background:#484848;
 }
 
 QScrollBar::handle:horizontal:pressed{
-background:#242424;
+background:#484848;
 }
 
 QScrollBar::add-page:horizontal{
@@ -434,6 +434,53 @@ alternate-background-color:#525252;
 gridline-color:#FF0000;
 }*/
 
+QTableView{
+color:#000000 ;                                       /*文字颜色*/
+background-color: #FFFFFF;                             /*背景色*/
+alternate-background-color: #FFFFFF;                   /* 用于隔行变色*/
+/*gridline-color:#000000;*/
+/*border: 2px groove gray;*/
+/*border-radius: 0px;
+padding: 2px 4px;*/
+}
+
+QHeaderView {
+    color: white;
+    font: bold 10pt;
+    background-color: #2A5CAA;
+    border-radius:5px;
+    min-height:29px;
+}
+
+/*QHeaderView#hHeader::section {
+    background-color:#000000;
+    color: black;
+    padding-left: 4px;
+    border: 1px solid #6c6c6c;
+    height:40;
+}*/
+
+
+QHeaderView#vHeader::section {
+
+    color: white;
+    background: #2A5CAA; /*琉璃色*/
+    padding-left: 4px;
+    border: 1px solid #6c6c6c;
+    width:10;
+}
+
+QTableView QTableCornerButton::section {
+   background: white;
+    /*color: red;*/
+
+   /* border: 5px solid #f6f7fa;
+    border-radius:0px;
+    border-color: rgb(64, 64, 64);*/
+ }
+
+
+
 QTabWidget::pane{
 border:1px solid #242424;
 background: rgb(255,255,255);
@@ -453,7 +500,7 @@ margin:4px;
 border-image:url(:/qss/psblack/branch_close.png);
 }
 
-QTreeView,QListView,QTableView,QSplitter::handle,QTreeView::branch{
+QTreeView,QListView,QSplitter::handle,QTreeView::branch{
 color: #000000;
 background:#FFFFFF;
 }
@@ -477,7 +524,7 @@ margin:0px;
 /*QHeaderView::section,QTableCornerButton:section{
 padding:3px;
 margin:0px;
-color:#DCDCDC;
+color:#FFFFFF;
 border:1px solid #242424;
 border-left-width:0px;
 border-right-width:1px;
@@ -678,10 +725,9 @@ QWidget[config="white"]{
 QTableWidget[config="white"]{
 background:#FFFFFF;
 border:none;
-
 font-size:12px;
 font-family:"Microsoft YaHei";
-color:#666666;
+color:#000000;
 }
 
 

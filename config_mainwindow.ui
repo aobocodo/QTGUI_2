@@ -22,7 +22,7 @@
      <number>0</number>
     </property>
     <property name="topMargin">
-     <number>0</number>
+     <number>50</number>
     </property>
     <property name="rightMargin">
      <number>0</number>
@@ -210,17 +210,11 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="action">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="text">
     <string>添加</string>
    </property>
   </action>
   <action name="action_2">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
    <property name="text">
     <string>删除</string>
    </property>
