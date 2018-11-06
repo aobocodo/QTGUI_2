@@ -25,6 +25,8 @@ private:
 
 protected:
     void closeEvent(QCloseEvent *);
+private slots:
+    void on_pushButton_clicked();
 };
 
 #endif // CONFIG_MAINWINDOW_H

@@ -1,6 +1,9 @@
 #include "config_mainwindow.h"
 #include "ui_config_mainwindow.h"
+#include <array>
 #include <QComboBox>
+#include <QDebug>
+
 
 
 config_mainwindow::config_mainwindow(QWidget *parent) :
@@ -62,4 +65,30 @@ config_mainwindow::~config_mainwindow()
 void config_mainwindow::closeEvent(QCloseEvent *)
 {
     emit close_cg();
+}
+
+void config_mainwindow::on_pushButton_clicked()
+{
+//    QTableWidgetItem *itab = ui->tableWidget->item(0,0);
+//    QString itabtext = itab->text();
+//    qDebug()<<"item"<<itabtext;
+
+//    QComboBox* combo=(QComboBox*)ui->tableWidget->cellWidget(0,2);
+//    combo->currentIndex();
+//    qDebug()<<"item"<<combo->currentText();
+
+    for(int i=0; i<3; i++){
+        std::array<std::string, 7> data;
+        QTableWidgetItem *itab = ui->tableWidget->item(i,0);
+        QString itabtext = itab->text();
+        data[0] = itabtext.toUtf8().constData();
+        for(int j=1; j<7; j++){
+            QComboBox* combo=(QComboBox*)ui->tableWidget->cellWidget(i,j);
+            data[j]=combo->currentText().toUtf8().constData();
+        }
+        for(int m=0; m<7; m++){
+            qDebug()<<"item is "<<QString::fromStdString(data[m]);
+        }
+    }
+
 }
