@@ -19,6 +19,7 @@ public:
 
 signals:
     void close_cg();
+    void emit_to_main(QString info);
 
 private:
     Ui::config_mainwindow *ui;

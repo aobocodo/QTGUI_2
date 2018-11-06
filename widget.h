@@ -1,4 +1,4 @@
-#ifndef WIDGET_H
+﻿#ifndef WIDGET_H
 #define WIDGET_H
 
 #include <QWidget>
@@ -30,6 +30,7 @@ private slots:
     void initForm();
     void menu_one_trigged(QAction* action);
     void cg_close();
+    void to_main(QString data);
     void menu_two_trigged(QAction* action);
     void on_btn_max_clicked();
     void on_btn_min_clicked();

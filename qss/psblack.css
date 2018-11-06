@@ -385,24 +385,24 @@ background:none;
 }
 
 QScrollBar:vertical{
-background:#484848;
+background:#DCDCDC;
 padding:0px;
 border-radius:6px;
 max-width:12px;
 }
 
 QScrollBar::handle:vertical{
-background:#242424;
+background:#484848;
 min-height:50px;
 border-radius:6px;
 }
 
 QScrollBar::handle:vertical:hover{
-background:#00BB9E;
+background:#242424;
 }
 
 QScrollBar::handle:vertical:pressed{
-background:#00BB9E;
+background:#242424;
 }
 
 QScrollBar::add-page:vertical{

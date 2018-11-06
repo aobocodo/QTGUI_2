@@ -77,18 +77,33 @@ void config_mainwindow::on_pushButton_clicked()
 //    combo->currentIndex();
 //    qDebug()<<"item"<<combo->currentText();
 
+
+
+//    for(int i=0; i<3; i++){
+//        std::array<std::string, 7> data;
+//        QTableWidgetItem *itab = ui->tableWidget->item(i,0);
+//        QString itabtext = itab->text();
+//        data[0] = itabtext.toUtf8().constData();
+//        for(int j=1; j<7; j++){
+//            QComboBox* combo=(QComboBox*)ui->tableWidget->cellWidget(i,j);
+//            data[j]=combo->currentText().toUtf8().constData();
+//        }
+//        for(int m=0; m<7; m++){
+//            qDebug()<<"item is "<<QString::fromStdString(data[m]);
+//        }
+//    }
+    QString head="ID                     状态            频点           带宽    发射增益    接收增益    功率";
+    emit emit_to_main(head);
     for(int i=0; i<3; i++){
-        std::array<std::string, 7> data;
+        QString data;
         QTableWidgetItem *itab = ui->tableWidget->item(i,0);
         QString itabtext = itab->text();
-        data[0] = itabtext.toUtf8().constData();
+        data = itabtext+":  ";
         for(int j=1; j<7; j++){
             QComboBox* combo=(QComboBox*)ui->tableWidget->cellWidget(i,j);
-            data[j]=combo->currentText().toUtf8().constData();
+            data=data+"            "+combo->currentText()+"  ";
         }
-        for(int m=0; m<7; m++){
-            qDebug()<<"item is "<<QString::fromStdString(data[m]);
-        }
+        emit emit_to_main(data);
     }
 
 }

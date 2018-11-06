@@ -38,6 +38,8 @@ void Widget::initForm(){
     this->setProperty("form",true);
     this->setProperty("canMove", true);
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint);
+    //ui->textBrowser->append(QString("<font color=red>%1</font>").arg(tr("hello wrold")));
+
 
     menu_one = new QMenu();
     menu_one->addAction("自配置");
@@ -83,6 +85,7 @@ void Widget::menu_one_trigged(QAction *action)
     qDebug()<<"hello "<<action->text();
     QString name = action->text();
     if(name=="自配置"&&cg_i==0){
+            ui->textBrowser->append(QString("<font color=black>[自配置]服务器下发配置信息</font>"));
             cg_i=1;
             QDesktopWidget *desk=QApplication::desktop();
             int wd=desk->width();
@@ -91,6 +94,7 @@ void Widget::menu_one_trigged(QAction *action)
             cg_frame->setProperty("config","white");
             cg_frame->setWindowTitle("自配置");
             connect(cg_frame,SIGNAL(close_cg()),this,SLOT(cg_close()));
+            connect(cg_frame,SIGNAL(emit_to_main(QString)),this,SLOT(to_main(QString)));
             cg_frame->move(((wd-600)/2),(ht-400)/2);
             cg_frame->setFixedSize(600,400);
             cg_frame->show();
@@ -104,6 +108,11 @@ void Widget::menu_one_trigged(QAction *action)
 void Widget::cg_close()
 {
     cg_i=0;
+}
+
+void Widget::to_main(QString data)
+{
+    ui->textBrowser->append(data);
 }
 
 void Widget::menu_two_trigged(QAction *action)
