@@ -730,6 +730,27 @@ font-family:"Microsoft YaHei";
 color:#000000;
 }
 
+QPushButton[btn="white"],QPushButton#cg_btn_one,QPushButton#cg_btn_two,QPushButton#cg_btn_three{
+/*background: #2A5CAA;*/
+background:#FFFFFF;
+border: 2px solid #000000;
+border-radius: 3px;
+color: #000000;
+font-size: 16px;
+font-weight: 400;
+}
+
+QPushButton[btn="white"]:hover,QPushButton#cg_btn_one:hover,QPushButton#cg_btn_two:hover,QPushButton#cg_btn_three:hover{
+background: #2CA7F8;
+border: 1px solid #2CA7F8;
+color: #FFFFFF;
+}
+
+QPushButton[btn="white"]:pressed,QPushButton#cg_btn_one:pressed,QPushButton#cg_btn_two:pressed,QPushButton#cg_btn_three:pressed {
+    background: #007DCF;
+    border: 1px solid #007DCF;
+}
+
 
 
 *:disabled{

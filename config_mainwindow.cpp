@@ -55,6 +55,8 @@ config_mainwindow::config_mainwindow(QWidget *parent) :
     ui->tableWidget->setAlternatingRowColors(true);
     //ui->tableWidget->horizontalHeader()->setObjectName("hHeader");
     ui->tableWidget->verticalHeader()->setObjectName("vHeader");
+
+    ui->pushButton->setProperty("btn","white");
 }
 
 config_mainwindow::~config_mainwindow()
@@ -92,6 +94,14 @@ void config_mainwindow::on_pushButton_clicked()
 //            qDebug()<<"item is "<<QString::fromStdString(data[m]);
 //        }
 //    }
+    QString head="<font color=red>手动配置参数：</font>";
+    emit emit_to_main(head);
+    print_to_main();
+
+}
+
+void config_mainwindow::print_to_main()
+{
     QString head="ID                     状态            频点           带宽    发射增益    接收增益    功率";
     emit emit_to_main(head);
     for(int i=0; i<3; i++){
@@ -105,5 +115,26 @@ void config_mainwindow::on_pushButton_clicked()
         }
         emit emit_to_main(data);
     }
+}
 
+
+void config_mainwindow::on_cg_btn_one_clicked()
+{
+    QString head="<font color=red>[覆盖最优]策略参数：</font>";
+    emit emit_to_main(head);
+    print_to_main();
+}
+
+void config_mainwindow::on_cg_btn_two_clicked()
+{
+    QString head="<font color=red>[性能最优]策略参数：</font>";
+    emit emit_to_main(head);
+    print_to_main();
+}
+
+void config_mainwindow::on_cg_btn_three_clicked()
+{
+    QString head="<font color=red>[吞吐量最优]策略参数：</font>";
+    emit emit_to_main(head);
+    print_to_main();
 }

@@ -85,7 +85,7 @@ void Widget::menu_one_trigged(QAction *action)
     qDebug()<<"hello "<<action->text();
     QString name = action->text();
     if(name=="自配置"&&cg_i==0){
-            ui->textBrowser->append(QString("<font color=black>[自配置]服务器下发配置信息</font>"));
+            ui->textBrowser->append(QString("<font color=black>准备配置基站</font>"));
             cg_i=1;
             QDesktopWidget *desk=QApplication::desktop();
             int wd=desk->width();
