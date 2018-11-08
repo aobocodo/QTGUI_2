@@ -14,8 +14,8 @@ config_mainwindow::config_mainwindow(QWidget *parent) :
     ui->menubar->show();
     for(int i=0; i<3;i++){
         QComboBox *combox_state = new QComboBox();
-        combox_state->addItem("ON");
-        combox_state->addItem("OFF");
+        combox_state->addItem("工作");
+        combox_state->addItem("待机");
         ui->tableWidget->setCellWidget(i,1,(QWidget*)combox_state);
     }
     for(int i=0; i<3;i++){
@@ -26,9 +26,9 @@ config_mainwindow::config_mainwindow(QWidget *parent) :
     }
     for(int i=0; i<3;i++){
         QComboBox *combox_bw = new QComboBox();
-        combox_bw->addItem("5");
-        combox_bw->addItem("10");
-        combox_bw->addItem("20");
+        combox_bw->addItem("5.00");
+        combox_bw->addItem("10.0");
+        combox_bw->addItem("20.0");
         ui->tableWidget->setCellWidget(i,3,(QWidget*)combox_bw);
     }
     for(int i=0; i<3;i++){
@@ -102,7 +102,7 @@ void config_mainwindow::on_pushButton_clicked()
 
 void config_mainwindow::print_to_main()
 {
-    QString head="ID                     状态            频点           带宽    发射增益    接收增益    功率";
+    QString head="ID                      状态             频点              带宽        发射增益    接收增益    功率";
     emit emit_to_main(head);
     for(int i=0; i<3; i++){
         QString data;
@@ -120,6 +120,10 @@ void config_mainwindow::print_to_main()
 
 void config_mainwindow::on_cg_btn_one_clicked()
 {
+    QComboBox* combo_value=(QComboBox*)ui->tableWidget->cellWidget(1,1);
+    combo_value->setCurrentIndex(combo_value->findText("待机"));
+    QComboBox* combo_value_1=(QComboBox*)ui->tableWidget->cellWidget(1,3);
+    combo_value_1->setCurrentIndex(combo_value_1->findText("10.0"));
     QString head="<font color=red>[覆盖最优]策略参数：</font>";
     emit emit_to_main(head);
     print_to_main();
